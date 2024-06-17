@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: ShoeMartAdmin
+  datasource:
+    url: jdbc:mysql://localhost:3306/shoe_mart
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: Rgukt@123
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    
+server:
+  port: 8081
+eureka:
+  client: 
+    service-url:
+      defaultZone: http://localhost:8000/eureka/
+      
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:                
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      breaker1:
+        register-health-indicator: true
+        event-consumer-buffer-size: 10
+        failure-rate-threshold: 50
+        minimum-number-of-calls: 5
+        automatic-transition-from-open-to-half-open-enabled: true
+        wait-duration-in-open-state: 5s
+        permitted-number-of-calls-in-half-open-state: 3
+        sliding-window-size: 10
+        sliding-window-type: count-based

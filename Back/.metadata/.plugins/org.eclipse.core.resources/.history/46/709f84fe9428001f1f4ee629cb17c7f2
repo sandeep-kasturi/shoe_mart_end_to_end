@@ -1,0 +1,5 @@
+package com.mart.admin.exception;
+
+public class A {
+
+}

@@ -1,0 +1,5 @@
+package com.mart.payment.repository;
+
+public interface PaymentRepository {
+
+}

@@ -1,0 +1,13 @@
+package com.mart.product.config;
+
+public class CustomLoadBalancerConfiguration {
+
+    @Bean
+    ReactorLoadBalancer<ServiceInstance> randomLoadBalancer(Environment environment,
+            LoadBalancerClientFactory loadBalancerClientFactory) {
+        String name = environment.getProperty(LoadBalancerClientFactory.PROPERTY_NAME);			-->this entire class logic is copied from documentation of (3.2. Switching between the load-balancing algorithms)
+        return new RandomLoadBalancer(loadBalancerClientFactory
+                .getLazyProvider(name, ServiceInstanceListSupplier.class),
+                name);
+    }
+}

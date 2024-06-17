@@ -1,0 +1,5 @@
+package com.mart.address.exception;
+
+public class A {
+
+}

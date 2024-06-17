@@ -1,0 +1,21 @@
+spring:
+  cloud:
+    gateway:
+#      discovery:
+#        locator:
+#          enabled: true
+#          lower-case-service-id: true
+      routes:
+        - id: Shoe_Mart_Admin
+          uri: lb://Shoe_Mart_Admin
+          predicates:
+            - Path=/adm/**
+            
+  application:
+    name: Shoe_Mart_Gateway
+server:
+  port: 5454
+eureka:
+  client: 
+    service-url:
+      defaultZone: http://localhost:8000/eureka/

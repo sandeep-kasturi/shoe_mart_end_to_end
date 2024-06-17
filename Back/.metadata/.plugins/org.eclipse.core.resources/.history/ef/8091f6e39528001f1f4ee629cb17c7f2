@@ -1,0 +1,5 @@
+package com.mart.payment.exception;
+
+public class A {
+
+}

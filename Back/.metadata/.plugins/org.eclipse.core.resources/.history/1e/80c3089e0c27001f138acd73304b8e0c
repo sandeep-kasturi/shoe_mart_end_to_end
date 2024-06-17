@@ -1,0 +1,13 @@
+package com.mart.product.config;
+
+import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient;
+
+@LoadBalancerClient(name="ShoeMartAdmin",configuration = CustomLoadBalancerConfiguration.class)		 
+public class DepartmentSerLoadBalan {										
+
+	@LoadBalanced												
+	@Bean
+	public Feign.Builder feBuilder(){
+		return Feign.builder();
+	}
+}

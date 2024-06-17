@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: Shoe_Mart_Cart
+  datasource:
+    url: jdbc:mysql://localhost:3306/shoe_mart
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: Rgukt@123
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  aop:
+    proxy-target-class: true
+      
+#spring.aop.proxy-target-class=true
+
+server:
+  port: 8084
+eureka:
+  client: 
+    service-url:
+      defaultZone: http://localhost:8000/eureka/
+      
+resilience4j:
+  retry:
+    instances:
+      breaker1:
+        max-attempts: 5
+        wait-duration: 2s

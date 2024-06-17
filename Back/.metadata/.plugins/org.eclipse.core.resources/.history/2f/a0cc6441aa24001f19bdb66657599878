@@ -1,0 +1,5 @@
+package com.mart.payment.Config;
+
+public class RestTemplateConfig {
+
+}

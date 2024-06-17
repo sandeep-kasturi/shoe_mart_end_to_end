@@ -1,0 +1,5 @@
+package com.mart.cart.exception;
+
+public class A {
+
+}
