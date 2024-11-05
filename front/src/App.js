@@ -60,7 +60,7 @@ function App() {
             </Routes>
           </Suspense>
         </div>
-        <div>
+        <div className=''>
           <Footer />
         </div>
       </div>

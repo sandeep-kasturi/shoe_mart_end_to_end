@@ -10,16 +10,21 @@ import org.json.JSONObject;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import com.mart.user.config.RestTemplateConfig;
 import com.mart.user.entity.ChangePasswordModel;
+import com.mart.user.entity.ProductModel;
 import com.mart.user.entity.ResetPasswordModel;
 import com.mart.user.entity.User;
 import com.mart.user.entity.VerificationToken;
 import com.mart.user.exception.InvalidPasswordException;
+import com.mart.user.exception.InvalidProductException;
 import com.mart.user.exception.InvalidTokenException;
 import com.mart.user.exception.InvalidUserException;
 import com.mart.user.jwt.JwtService;
@@ -50,6 +55,9 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
     private JwtService jwtService;
+	
+	@Autowired
+	private RestTemplate restTemplate;
 
 	@Override
 	public void add(User user, final HttpServletRequest request) throws InvalidUserException {
@@ -249,6 +257,17 @@ public class UserServiceImpl implements UserService{
 		} catch (Exception e) {
 			throw new InvalidUserException(e.getMessage());
 		}
+	}
+
+	@Override
+	public void addProduct(ProductModel productModel) throws InvalidProductException {
+		try {
+			String msg = restTemplate.postForObject("http://localhost:8081/adm/product/add", productModel, String.class);
+			log.info(msg);
+		} catch (Exception e) {
+			throw new InvalidProductException("something happened while adding the product");
+		}
+		
 	}
 }
 	

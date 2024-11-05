@@ -21,6 +21,7 @@ const OrderSummery = () => {
   const addrsId = searchParams.get("addrsId");
     
   const listOfOrderItems = useSelector(store=>store.orderRedux.listOfOrderItems);
+  const msg = useSelector(store=>store.orderRedux.msg);
   // console.log("order data in orderSummery:",order)
   const address = useSelector(store=>store.addressRedux.address);
   const price = useSelector(store=>store.orderRedux.price);
@@ -29,10 +30,13 @@ const OrderSummery = () => {
     dispatch(getAddressById(addrsId));
   }, []);
 
+
+  const [count, setCount] = useState(0);       // this count state is defined just to pass to OrderItem comp, cause whenver we delete an item from order we increase count, so whenever the count changes this useEffect will trigger(will get the new list of order) 
+
   useEffect(() => {
     dispatch(getAllOrder());   
     dispatch(getOrderPrice());
-  }, [listOfOrderItems?.length]);
+  }, [listOfOrderItems?.length, count]);
 
 
   const handleCheckout = () => {
@@ -48,7 +52,7 @@ const OrderSummery = () => {
       <div>
         <div className='lg:grid grid-cols-3  relative'>
             <div className='col-span-2'>
-                {listOfOrderItems?.map((item) => <OrderItem key={item.id} item={item} />)}
+                {listOfOrderItems?.map((item) => <OrderItem key={item.id} item={item} count={count} setCount={setCount} />)}
                 {/* {[1,1,1].map(() => <OrderItem />)} */}
             </div>
             <div className='px-5 sticky top-0 h-[100vh] mt-5 lg:mt-0'>

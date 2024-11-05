@@ -6,7 +6,7 @@ import { getAllOrder, removeOrderItem } from '../redux-toolkit/order-redux/order
 import { addToCart } from '../redux-toolkit/cart-redux/cartSlice';
 
 
-const OrderItem = ({item}) => {
+const OrderItem = ({item, setCount}) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -15,6 +15,7 @@ const OrderItem = ({item}) => {
     console.log("id of remove cart item:", item?.id)
     dispatch(addToCart(item?.id));
     dispatch(removeOrderItem(item?.id)).then(()=>{
+      setCount(c=>c+1);                                 //this count is increasing just to re-render the parent/OrderSummery component forcibly(for explanation refer OrderSummery's useState of count variable) 
       alert('item removed successfully');
     });
   }

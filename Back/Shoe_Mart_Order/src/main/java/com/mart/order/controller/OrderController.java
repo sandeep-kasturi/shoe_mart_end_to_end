@@ -14,13 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
+
 import com.mart.order.entity.Order;
 import com.mart.order.service.OrderService;
+
 
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8087"})
 @RestController
 @RequestMapping("/ord")
 public class OrderController {
+	
 	
 	@Autowired
 	private OrderService orderService;

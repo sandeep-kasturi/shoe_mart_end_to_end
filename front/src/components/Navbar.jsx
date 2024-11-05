@@ -339,7 +339,8 @@ const Navbar = () => {
                             cursor: "pointer",
                           }}
                           >
-                            Hi
+                            {/* Hi */}
+                            {user?.user?.firstName.substr(0,1)}
                           </Avatar>
                           <Menu
                             id="basic-menu"

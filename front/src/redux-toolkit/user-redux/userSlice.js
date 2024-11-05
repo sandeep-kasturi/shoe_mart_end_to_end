@@ -92,6 +92,7 @@ export const getUserByJwt = createAsyncThunk('user/getUserByJwt', async (_, { re
             // console.log("api_user:",api_user);
             const {data} = await api_user.get(`/usr/profile`);
             console.log("get user data in action",data);
+            return data;
         } catch (error) {
             return rejectWithValue(error.message);
         }

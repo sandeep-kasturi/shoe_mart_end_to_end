@@ -53,6 +53,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests()
                 .requestMatchers("/auth/**")
                 .permitAll()
+                .requestMatchers("/usr/adm/product/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()

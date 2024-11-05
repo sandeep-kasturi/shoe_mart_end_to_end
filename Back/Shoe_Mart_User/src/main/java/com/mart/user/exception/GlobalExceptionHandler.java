@@ -29,4 +29,9 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<Object> handleInvalidUserException(InvalidUserException invalidUserException){
 		return new ResponseEntity<Object>(invalidUserException.getMessage(),HttpStatus.BAD_REQUEST);
 	}
+	
+	@ExceptionHandler(InvalidProductException.class)
+	public ResponseEntity<Object> InvalidProductException(InvalidProductException invalidProductException){
+		return new ResponseEntity<Object>(invalidProductException.getMessage(),HttpStatus.BAD_REQUEST);
+	}
 }
